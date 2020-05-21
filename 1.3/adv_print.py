@@ -24,7 +24,7 @@ def adv_print(*args, **kwargs):
     end = kwargs.get('end', '\n')
     sep = kwargs.get('sep', ' ')
     file = kwargs.get('file', sys.stdout)
-    flush = kwargs.get('flush', 'false')
+    flush = kwargs.get('flush', False)
     max_line = kwargs.get('max_line')
     in_file = kwargs.get('in_file')
 
