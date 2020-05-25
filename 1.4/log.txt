@@ -1,0 +1,4 @@
+2020-05-25 12:00:11: md5_generator(args=('original_text.txt',), kwargs={}) => <generator object md5_generator at 0x7fc122bf3c10>
+2020-05-25 12:00:29: md5_generator(args=('original_text.txt',), kwargs={}) => <generator object md5_generator at 0x7fb84e0dbc10>
+2020-05-25 12:01:45: md5_generator(args=('original_text.txt',), kwargs={}) => <generator object md5_generator at 0x7f8de7223c10>
+2020-05-25 12:01:47: md5_generator(args=('original_text.txt',), kwargs={}) => <generator object md5_generator at 0x7fc020cf3c10>

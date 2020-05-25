@@ -1,0 +1,2 @@
+2020-05-25 12:01:45: sha256_generator(args=('original_text.txt',), kwargs={}) => <generator object sha256_generator at 0x7f8de7223c10>
+2020-05-25 12:01:47: sha256_generator(args=('original_text.txt',), kwargs={}) => <generator object sha256_generator at 0x7fc020cf3c10>
