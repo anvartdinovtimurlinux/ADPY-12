@@ -22,13 +22,9 @@ class SecretaryTest(unittest.TestCase):
             documents.extend(json.load(docs))
 
     def test_update_data(self):
-        self.zero_docs = []
-        self.zero_dirs = {}
         update_date()
-        self.assertGreater(len(directories),
-                           len(self.zero_dirs))
-        self.assertGreater(len(documents),
-                           len(self.zero_docs))
+        self.assertGreater(len(documents), 0)
+        self.assertGreater(len(directories), 0)
 
     def test_add_new_shelf(self):
         start_len = (len(directories))
@@ -37,18 +33,25 @@ class SecretaryTest(unittest.TestCase):
         add_new_shelf(test_value)
         self.assertNotEqual(start_len, len(directories))
 
+    def test_move_doc_to_shelf(self):
+        doc = '2207 876234'
+        test_shelf = '3'
+        self.assertIn(doc, [document['number'] for document in documents])
+        with patch('secretary.input', side_effect=[doc, test_shelf]):
+            move_doc_to_shelf()
+        self.assertIn(doc, directories[test_shelf])
+
     def test_move_non_existing_doc_to_shelf(self):
         non_exist_doc = 'несуществующий документ'
         test_shelf = '3'
-        self.assertNotIn(non_exist_doc, documents)
-        with patch('secretary.input',
-                   side_effect=[non_exist_doc, test_shelf]):
+        self.assertNotIn(non_exist_doc, [document['number'] for document in documents])
+        with patch('secretary.input', side_effect=[non_exist_doc, test_shelf]):
             move_doc_to_shelf()
         self.assertIn(non_exist_doc, directories[test_shelf])
 
     def test_add_new_document(self):
         with patch('secretary.input',
-                   side_effect=['007', 'license', 'James Bond', '1']):
+                   side_effect=['7005 808598', 'passport', 'Pupkin Ivan', '1']):
             result = add_new_doc()
-        self.assertIn('007', directories['1'])
+        self.assertIn('7005 808598', directories['1'])
         self.assertEqual(result, '1')
