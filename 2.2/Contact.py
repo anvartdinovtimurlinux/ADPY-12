@@ -17,12 +17,12 @@ class Contact:
     def get_normalize_name(self):
         full_name = f'{self.lastname} {self.firstname} {self.patronymic}'
         result = re.findall(r'\w+', full_name)
-        if len(result) == 1:
-            return result[0], '', ''
+        if len(result) == 3:
+            return result[0], result[1], result[2]
         elif len(result) == 2:
             return result[0], result[1], ''
-        elif len(result) == 3:
-            return result[0], result[1], result[2]
+        else:
+            return result[0], '', ''
 
     def get_normalize_phone(self):
         result = re.sub(
