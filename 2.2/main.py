@@ -17,7 +17,6 @@ def write_contacts(path_to_file, contacts_list):
 
 def main():
     raw_contacts_list = get_contacts('phonebook_raw.csv')
-    print(*raw_contacts_list, sep='\n')  # удалить перед заливкой на гитхаб
 
     my_phone_book = PhoneBook()
     for raw_contact in raw_contacts_list:
@@ -25,7 +24,6 @@ def main():
         my_phone_book.add_contact(contact)
 
     contacts_list = my_phone_book.get_contacts_list()
-    print(*contacts_list, sep="\n")
     write_contacts('phonebook.csv', contacts_list)
 
 
