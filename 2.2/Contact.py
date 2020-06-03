@@ -26,7 +26,7 @@ class Contact:
 
     def get_normalize_phone(self):
         normalize_phone = re.sub(
-            r'^\s*(8|\+7)\s*\(*(\d{3})\)*[\s-]*(\d{3})[\s-]*(\d{2})[\s-]*(\d{2})',
+            r'(8|\+7)[\s-]*\(*(\d{3})\)*[\s-]*(\d{3})[\s-]*(\d{2})[\s-]*(\d{2})',
             r'+7(\2)\3-\4-\5',
             self.phone
         )
