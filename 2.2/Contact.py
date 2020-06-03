@@ -16,26 +16,26 @@ class Contact:
 
     def get_normalize_name(self):
         full_name = f'{self.lastname} {self.firstname} {self.patronymic}'
-        result = re.findall(r'\w+', full_name)
-        if len(result) == 3:
-            return result[0], result[1], result[2]
-        elif len(result) == 2:
-            return result[0], result[1], ''
+        normalize_name = re.findall(r'\w+', full_name)
+        if len(normalize_name) == 3:
+            return normalize_name[0], normalize_name[1], normalize_name[2]
+        elif len(normalize_name) == 2:
+            return normalize_name[0], normalize_name[1], ''
         else:
-            return result[0], '', ''
+            return normalize_name[0], '', ''
 
     def get_normalize_phone(self):
-        result = re.sub(
+        normalize_phone = re.sub(
             r'^\s*(8|\+7)\s*\(*(\d{3})\)*[\s-]*(\d{3})[\s-]*(\d{2})[\s-]*(\d{2})',
             r'+7(\2)\3-\4-\5',
             self.phone
         )
-        result = re.sub(
+        normalize_phone = re.sub(
             r'\s*\(?(доб\.)\s(\d+)\)?',
             r' доб.\2',
-            result
+            normalize_phone
         )
-        return result
+        return normalize_phone
 
     def update_contact(self, new_contact):
         self.lastname = self.lastname or new_contact.lastname
