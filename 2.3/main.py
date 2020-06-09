@@ -14,10 +14,11 @@ class MyDB:
         self.create_db()
 
     def create_db(self):
+        db_name = "student"
         with pg.connect(**self.params) as conn:
             with conn.cursor() as cursor:
                 cursor.execute("""
-                    CREATE TABLE IF NOT EXISTS student(
+                    CREATE TABLE IF NOT EXISTS "%s"(
                         id SERIAL PRIMARY KEY,
                         name VARCHAR(100) NOT NULL,
                         gpa NUMERIC(10, 2),
@@ -34,7 +35,7 @@ class MyDB:
                         course_id INT REFERENCES course(id),
                         PRIMARY KEY (student_id, course_id)
                     );
-                """)
+                """, (db_name,))
 
     def add_course(self, course_name):
         with pg.connect(**self.params) as conn:
